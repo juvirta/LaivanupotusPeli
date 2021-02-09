@@ -85,7 +85,7 @@ Tässä tehtävässä **EI** siis tule käyttää `Platform.runLater()`-metodia,
 Ulkoisesti ohjelma näyttää edelleen samalta kuin tehtävän 2 aikaan.
 
 ## Tehtävä 5 - Tilatietoja (0,5p)
-Jatketaan tehtävästä 4. Lähetä päivityksiä tiivistearvon murtotehtävän tilasta käyttäen Task-luokan tähän tarjoamia metodeita. Käyttöliittymän puolella sido (property binding) `statusLabel`-tekstikomponentti tehtävän tilaviesteihin. Myöskään tässä (eikä tulevissakaan) tehtävässä ei tule käyttää enää `runLater()`-metodia. 
+Jatketaan tehtävästä 4. Lähetä päivityksiä tiivistearvon murtotehtävästä käyttäen Task-luokan tähän tarjoamia metodeita. Käyttöliittymän puolella sido (property binding) `statusLabel`-tekstikomponentti tehtävän viesteihin. Myöskään tässä (eikä tulevissakaan) tehtävässä ei tule käyttää enää `runLater()`-metodia. 
 
 Tilatiedot tulevat olla seuraavat:
 - *Initializing* kun bruteForce-laskentaa valmistellaan
