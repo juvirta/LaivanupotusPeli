@@ -5,18 +5,21 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import javafx.concurrent.Task;
 
 /*
  * Modify me to work as a JavaFX Task
  */
-public class HashCrackTask {
+public class HashCrackTask extends Task<String> {
 
     private final String hashHexString;
     private final int depth;
     private final char[] dictionary;
     private final String hashAlgorithm;
     private final String encoding;
-
+    
+    String result;
+    
     /**
      * 
      * @param hashHexString The hashed input value as a String representing
@@ -87,5 +90,10 @@ public class HashCrackTask {
 
         return hashBytes;
     }
+
+	@Override
+	protected String call() throws Exception {
+		return bruteForce();
+	}
 
 }

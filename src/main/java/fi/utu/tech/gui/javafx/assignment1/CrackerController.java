@@ -24,6 +24,9 @@ public class CrackerController {
     @FXML
     void crackBtnAction(ActionEvent event) {
         final var inputHash = hashInputField.getText();
+       
+        // Tehtävän 1 toteutus 
+        Runnable block = () -> {
         try {
             /*
              * Cracking the given input hash with input values that are maximum of 4 characters long,
@@ -34,8 +37,8 @@ public class CrackerController {
             System.out.println(result);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
-        }
-        
+        }        
+    };
+    new Thread(block).start();
     }
-
 }

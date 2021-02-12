@@ -9,6 +9,7 @@ module fi.utu.tech.gui.javafx {
   requires transitive javafx.graphics;
   requires transitive javafx.media;
   requires transitive javafx.web;
+requires java.desktop;
   exports fi.utu.tech.gui.javafx;
   exports fi.utu.tech.gui.javafx.assignment1;
   exports fi.utu.tech.gui.javafx.assignment2;

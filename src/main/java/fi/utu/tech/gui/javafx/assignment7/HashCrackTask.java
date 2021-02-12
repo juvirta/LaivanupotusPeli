@@ -1,6 +1,8 @@
 package fi.utu.tech.gui.javafx.assignment7;
 
 import fi.utu.tech.gui.javafx.WordIterator;
+import javafx.concurrent.Task;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -10,14 +12,16 @@ import java.util.Arrays;
  * Copy the task made in assignment 6 (4 or 5 if 6 is not completed) here
  * and start implementing support for cancelling the task
  */
-public class HashCrackTask {
+public class HashCrackTask extends Task<String> {
 
     private final String hashHexString;
     private final int depth;
     private final char[] dictionary;
     private final String hashAlgorithm;
     private final String encoding;
-
+    
+    String result;
+    
     /**
      * 
      * @param hashHexString The hashed input value as a String representing
@@ -46,6 +50,9 @@ public class HashCrackTask {
      *                                      supported
      */
     public String bruteForce() throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    	
+    	
+    	
         // Convert the "human readable" string to bytes for easier comparison
         var hashBytes = prepareHash(hashHexString);
 
@@ -56,16 +63,37 @@ public class HashCrackTask {
 
         // Let's test all the combinations possible with given dictionary and depth
         // and see if they match to the given string
+        
+     // Päivitetään viesti
+    	updateMessage("Running");
+        
         while (wi.hasNext()) {
             var testString = wi.next();
             boolean match = Arrays.equals(md.digest(testString.getBytes(encoding)), hashBytes);
             // If the testString bytes are equal with the input hash bytes, we've got a
             // match
+           
+            // Edistyspäivitys
+            updateProgress(wi.getCurrentIndex(), wi.size());
+            
+            // onko peruttu
+            if(isCancelled()) {
+            	updateProgress(1,1);
+            	updateMessage("Cancelled");
+            	return null;
+            }
+            
             if (match) {
+            	// Päivitetään viesti
+            	updateProgress(wi.size(), wi.size());
+            	updateMessage("Ready");
                 return testString;
             }
         }
         // If no match, return null
+        
+     // Päivitetään viesti
+    	updateMessage("Ready");
         return null;
 
     }
@@ -88,5 +116,14 @@ public class HashCrackTask {
 
         return hashBytes;
     }
+
+	@Override
+	protected String call() throws Exception {
+		// Päivitetään viesti
+    	updateMessage("Initializing");
+		return bruteForce();
+	}
+	
+
 
 }

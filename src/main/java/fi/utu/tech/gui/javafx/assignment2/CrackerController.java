@@ -24,13 +24,20 @@ public class CrackerController {
     @FXML
     void crackBtnAction(ActionEvent event) {
         final var inputHash = hashInputField.getText();
+        // Tehtävän 1 toteutus 
+        Runnable block = () -> {
         try {
+        	// Tehtävän 2 toteutus
+        	crackBtn.setDisable(true);
             String result = new HashCrack(inputHash, 4, WordIterator.DEFAULT_DICT, "md5", "utf-8").bruteForce();
             reversedList.getItems().add(result);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-    }
+        // Tehtävän 2 toteutus
+        crackBtn.setDisable(false);
+        };
+        new Thread(block).start();
+        }
 
 }
