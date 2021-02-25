@@ -7,21 +7,22 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application {
+	
+	/*
+	 * This is the class that starts the Application and loads the
+	 * settings screen. 
+	 */
 
 	@Override
     public void start(Stage stage) throws Exception {
-        // Getting the reference to "class object of this class"
-        var resourceRoot = getClass();
-        // The fxml filename that is in resources folder
-        var form = "Laiva.fxml";
-
-        // Give the FXML resource to the FXMLLoader
+       
+		// Setting up Settings screen 
+		var resourceRoot = getClass();
+        var form = "Settings.fxml";
         var loader = new FXMLLoader(resourceRoot.getResource(form));
-
-        // Load and parse the FXML into an Java object (Parent)
         Parent root = loader.load();
-
-        // This is just the usual: Setting scene, showing stage
+        
+        //Starting the settings screen
         stage.setTitle("Laivanupotus");
         var scene = new Scene(root);
         stage.setScene(scene);
